@@ -1,0 +1,18 @@
+architecture: replicaset
+persistence:
+  enabled: true
+  storageClass: ebs-gp3-encrypted-sc
+  size: 8Gi
+  mountPath: /bitnami/mongodb # default path 
+metrics:
+  # Enable it using a sidecar Prometheus exporter
+  enabled: true
+auth:
+  existingSecret: mongodb-custom-secret
+fullnameOverride: mongodb
+arbiter:
+  enabled: false
+replicaCount: 3
+tls:
+  # if you set it true, it requires some additional configurations to connect from your local env
+  enabled: false
